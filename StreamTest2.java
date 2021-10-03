@@ -101,7 +101,7 @@ public class StreamTest2 {
         str = "XML,CSS,HTML";
         Pattern.compile(",").splitAsStream(str).forEach(System.out::println);
        
-        Path path = Paths.get("./MyClass.java");
+        Path path = Paths.get("./StreamTest2.java");
         try (Stream<String> lines = Files.lines(path)){
             lines.forEach(System.out::println);
         }catch(IOException e){
