@@ -103,6 +103,7 @@ public class StreamTest4 {
         System.out.println(count);
     }
 }
+
 class Employee {
   public static enum Gender{
       MALE, FEMALE
