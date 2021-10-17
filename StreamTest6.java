@@ -12,8 +12,8 @@ import java.util.stream.Collectors;
 
 import java.util.function.Function;
 
+//www.java2s.com : Java Stream Collect Map, Join, Group, Partition / Partitioning, Converter, Find & Match
 public class StreamTest6 {
-    //Java Stream Collect Map, Join, Group, Partition / Partitioning, Converter, Find & Match
     public static void main(String args[]) {
       //toMap() - 3 Overloaded Methods
       //I-Way
