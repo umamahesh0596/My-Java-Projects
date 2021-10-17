@@ -11,6 +11,7 @@ import java.util.function.BiConsumer;
 import java.time.LocalDate;
 import java.time.Month;
 
+//www.java2s.com : Java Stream Collectors & Statistics
 public class StreamTest5 {
     public static void main(String args[]) {
         List<Employee> persons = Employee.persons();
