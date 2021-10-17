@@ -15,6 +15,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+//www.java2s.com : Java Stream Create, Stream from Functions, Collections, String & Files
 public class StreamTest2 {
     public static void main(String args[]) {
         Stream<String> streamOfStrings = Stream.of("java2s.com");//single
