@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.time.Month;
 
 public class StreamTest4 {
+    //www.java2s.com : Java Steam Operations, Filter, Map, Reduce, Aggregation & Count
     public static void main(String args[]) {
         Employee.persons().stream().filter(Employee::isFemale).forEach(System.out::println);
         
