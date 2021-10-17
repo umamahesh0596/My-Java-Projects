@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+//www.java2s.com : Java Steam Operations - I
 public class StreamTest3 {
     public static void main(String args[]) {
       List<Integer> list = List.of(5,3,5,7,7,2,8,2,2,6,3,5,8,9,7);
