@@ -13,6 +13,9 @@ import java.util.ArrayList;
 import java.util.DoubleSummaryStatistics;
 import java.util.IntSummaryStatistics;
 import java.util.LongSummaryStatistics;
+import java.util.Collection;
+import java.util.TreeSet;
+import java.util.Set;
 
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -188,7 +191,41 @@ public class StreamTest8 {
       System.out.println(longSum);
       
       //toCollection(Supplier)
+      streamOfStrings = Stream.of("a", "b", "c");
+      Collection<String> collectionOfStringNames = streamOfStrings.collect(Collectors.toCollection(TreeSet::new));
+      System.out.println(collectionOfStringNames);
       
+      //toConcurrentMap(Function,Function)
+      Map<Long, String> idToNameMap = Employee.persons().stream().collect(Collectors.toConcurrentMap(Employee::getId, Employee::getName));//In case of Duplicate ID :::: Exception in thread "main" java.lang.IllegalStateException: Duplicate key 7 (attempted merging values John and Tom)
+      System.out.println(idToNameMap);
+      //toConcurrentMap(Function,Function,BinaryOperator) / toConcurrentMap(Function,Function,BinaryOperator,Supplier)
+      Map<Employee.Gender, Long> countByGender = Employee.persons().stream().collect(Collectors.toConcurrentMap(Employee::getGender, e -> 1L, (oldCount, newCount) -> (newCount+oldCount)));
+      System.out.println(countByGender);
+      
+      //toList()
+      streamOfStrings = Stream.of("a", "b", "c");
+      List<String> listOfStringNames = streamOfStrings.collect(Collectors.toList());
+      System.out.println(listOfStringNames);
+      List<Employee> listOfEmployees = Employee.persons().stream().collect(Collectors.toList());
+      System.out.println(listOfEmployees);
+      List<String> listOfEmployeeNames = Employee.persons().stream().map(Employee::getName).collect(Collectors.toList());
+      System.out.println(listOfEmployeeNames);
+      
+      //toMap(Function,Function)
+      idToNameMap = Employee.persons().stream().collect(Collectors.toMap(Employee::getId, Employee::getName));
+      System.out.println(idToNameMap);
+      //toMap(Function,Function,BinaryOperator)
+      Map<Employee.Gender, String> genderToNamesMap = Employee.persons().stream().collect(Collectors.toMap(Employee::getGender, Employee::getName, (oldValue, newValue) -> String.join(",", newValue, oldValue)));
+      System.out.println(genderToNamesMap);
+      
+      //toSet()
+      streamOfStrings = Stream.of("a", "b", "c");
+      Set<String> setOfStrings = streamOfStrings.collect(Collectors.toSet());
+      System.out.println(setOfStrings);
+      Set<Employee> setOfEmployees = Employee.persons().stream().collect(Collectors.toSet());
+      System.out.println(setOfEmployees);
+      Set<String> setOfEmployeeNames = Employee.persons().stream().map(Employee::getName).collect(Collectors.toSet());
+      System.out.println(setOfEmployeeNames);
     }
 }
 
@@ -247,7 +284,7 @@ class Employee {
         Employee p8 = new Employee(8, "Gem", Gender.TRANS, LocalDate.of(1978, Month.APRIL, 7), 6767.0);
         //Employee p9 = new Employee(9, "Zeck", Gender.TRANS, LocalDate.of(1969, Month.FEBRUARY, 9), 8977.0);
         Employee p9 = new Employee(9, "Zeck", Gender.TRANS, IsoChronology.INSTANCE.date(1969, 2, 9), 8977.0);
-        Employee p10 = new Employee(7, "Tom", Gender.MALE, LocalDate.of(1975, Month.JUNE, 4), 3214.0);
+        Employee p10 = new Employee(10, "Tom", Gender.MALE, LocalDate.of(1975, Month.JUNE, 4), 3214.0);
         
         //List<Employee> persons = List.of(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10);//Immuable - UnSupportedModificationException for Modification
         List<Employee> persons = Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10);//List is View of Array | Mutable - No Exception for Modification
